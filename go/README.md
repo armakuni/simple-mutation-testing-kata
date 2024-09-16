@@ -9,3 +9,4 @@ This instruction for this kata will use [Go Gremlins](https://gremlins.dev/) but
 2. Run Unit test to ensure all tests are currently passing `go test -r ./...`
 3. Run Go Gremlins to discover how many mutants escape `gremlins unleash` you should see this output
 4. First look at the mutants that escape from the maths package use the output from gremlins to find the bugs and missing tests. Add the missing test(s) to drive out the bug fix
+5.  Run Go Gremlins to discover how many mutants escape `gremlins unleash` you should see number of escaped mutants has gone down
