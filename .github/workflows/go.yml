@@ -15,7 +15,7 @@ jobs:
         name: Checkout code
       - name: Install go
         with:
-          go-version-file: go/go::.mod
+          go-version-file: go/go.sum
         uses: actions/setup-go@v5
       - run: |
           go mod tidy
