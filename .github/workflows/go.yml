@@ -13,6 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Checkout code
+      - name: Setup path
+        run: |
+          echo "GOPATH=$GITHUB_WORKSPACE/go" >> "$GITHUB_ENV"
+          echo "$GITHUB_WORKSPACE/go/bin" >> "$GITHUB_PATH"
       - name: Install go
         with:
           go-version-file: go/go.sum
