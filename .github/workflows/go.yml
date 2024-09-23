@@ -17,6 +17,8 @@ jobs:
         name: Run tests
       - run: go get -t -v github.com/avito-tech/go-mutesting/...
         name: Install Go MuTesting
+      - run: go-mutesting ./...
+        name: Run mutation testing tool
 #      - name: Setup path
 #        run: |
 #          echo "GOPATH=$GITHUB_WORKSPACE/go" >> "$GITHUB_ENV"
@@ -29,5 +31,3 @@ jobs:
 #          go mod tidy
 #          go get -t -v github.com/avito-tech/go-mutesting/...
 #        name: Install dependencies
-#      - run: go-mutesting ./...
-#        name: Run mutation testing tool
