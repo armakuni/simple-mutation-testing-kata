@@ -1,0 +1,25 @@
+on:
+  pull_request:
+  push:
+
+defaults:
+  run:
+    working-directory: typescript
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout code
+      - name: Install go
+        with:
+          go-version: '>=1.17.0'
+        uses: actions/setup-go@v5
+      - run: go get .
+        name: Install dependencies
+      - run: go test -r ./...
+        name: Run tests
+      - run: go-mutesting ./...
+        name: Run mutation testing tool
