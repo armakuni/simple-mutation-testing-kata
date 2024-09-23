@@ -15,6 +15,8 @@ jobs:
         name: Checkout code
       - run: go test ./...
         name: Run tests
+      - run: go get -t -v github.com/avito-tech/go-mutesting/...
+        name: Install Go MuTesting
 #      - name: Setup path
 #        run: |
 #          echo "GOPATH=$GITHUB_WORKSPACE/go" >> "$GITHUB_ENV"
