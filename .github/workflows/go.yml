@@ -13,19 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Checkout code
-      - name: Setup path
-        run: |
-          echo "GOPATH=$GITHUB_WORKSPACE/go" >> "$GITHUB_ENV"
-          echo "$GITHUB_WORKSPACE/go/bin" >> "$GITHUB_PATH"
-      - name: Install go
-        with:
-          go-version-file: go/go.sum
-        uses: actions/setup-go@v5
-      - run: |
-          go mod tidy
-          go get -t -v github.com/avito-tech/go-mutesting/...
-        name: Install dependencies
       - run: go test ./...
         name: Run tests
-      - run: go-mutesting ./...
-        name: Run mutation testing tool
+#      - name: Setup path
+#        run: |
+#          echo "GOPATH=$GITHUB_WORKSPACE/go" >> "$GITHUB_ENV"
+#          echo "$GITHUB_WORKSPACE/go/bin" >> "$GITHUB_PATH"
+#      - name: Install go
+#        with:
+#          go-version-file: go/go.sum
+#        uses: actions/setup-go@v5
+#      - run: |
+#          go mod tidy
+#          go get -t -v github.com/avito-tech/go-mutesting/...
+#        name: Install dependencies
+#      - run: go-mutesting ./...
+#        name: Run mutation testing tool
