@@ -1,0 +1,36 @@
+Escaped mutants:
+================
+
+1) /Users/markbradley/code/armakuni/katas/simple-mutation-testing-kata/php/src/Maths/Comparison.php:18    [M] LessThanOrEqualTo
+
+@@ @@
+     }
+     public static function lessThan(int $a, int $b): bool
+     {
+-        return $a <= $b;
++        return $a < $b;
+     }
+     public static function greaterThan(int $a, int $b): bool
+     {
+
+
+2) /Users/markbradley/code/armakuni/katas/simple-mutation-testing-kata/php/src/Maths/Comparison.php:23    [M] GreaterThan
+
+@@ @@
+     }
+     public static function greaterThan(int $a, int $b): bool
+     {
+-        return $a > $b;
++        return $a >= $b;
+     }
+ }
+
+
+Timed Out mutants:
+==================
+
+Skipped mutants:
+================
+
+Not Covered mutants:
+====================
