@@ -2,9 +2,9 @@
 
 This is a golang implementation of the Simple Mutation Testing Kata.
 
-This instruction for this kata will use [Go MuTesting](https://github.com/avito-tech/go-mutesting) as it can be 
+The instruction for this kata will use [Go MuTesting](https://github.com/avito-tech/go-mutesting) as it can be 
 installed as a module making it easier to ensure the kata always work. If wish to use [Go Gremlins](https://gremlins.dev/) 
-there should be nothing stopping you.
+or another Mutation Testing Framework there should be nothing stopping you.
 
 1. Run Unit test to ensure all tests are currently passing `go test ./...`
 2. Install go-mutesting `go get -t -v github.com/avito-tech/go-mutesting/...`
