@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" /><title>Cosmic Ray Report</title></head><body><div class="container"><h1><p class="text-dark">Cosmic Ray Report</p></h1></div><div class="container"><div class="mb-1" id="summary_info___accordion"><div class="card"><a data-toggle="collapse" data-target="#summary_info___collapse_1" aria-expanded="true" aria-controls="summary_info___collapse_1" href="#"><div class="card-header" id="summary_info___heading_1"><button class="btn btn-outline-dark"><h4 class="m-0">Summary info</h4></button></div></a><div aria-labelledby="summary_info___heading_1" data-parent="#summary_info___accordion" class="collapse show" id="summary_info___collapse_1"><div class="card-body"><p>Date time: 11/10/2024 16:13:54</p><p>Total jobs: 21</p><p>Complete: 21 (100.00%)</p><p>Surviving mutants: 4 (19.05%)</p></div></div></div></div><div class="mb-1" id="job_list___accordion"><div class="card"><a data-toggle="collapse" data-target="#job_list___collapse_1" aria-expanded="false" aria-controls="job_list___collapse_1" href="#"><div class="card-header" id="job_list___heading_1"><button class="btn btn-outline-dark"><h4 class="m-0">Job list</h4></button></div></a><div aria-labelledby="job_list___heading_1" data-parent="#job_list___accordion" class="collapse" id="job_list___collapse_1"><div class="card-body"><div class="text-right mb-1"><div class="mx-1" id="job_item_expand_all"><a href="#" onclick="$('div.job_list___sub_multi_collapse').collapse('show');"><button class="btn btn-outline-dark"><span>Expand All</span></button></a></div><div class="mx-1" id="job_item_collapse_all"><a href="#" onclick="$('div.job_list___sub_multi_collapse').collapse('hide');"><button class="btn btn-outline-dark"><span>Collapse All</span></button></a></div></div><div class="mb-1" id="job_list___sub_accordion_1"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_1_1" aria-expanded="false" aria-controls="job_list___sub_collapse_1_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_1_1"><button class="btn btn-outline-success"><span class="job_id">1 : Job ID cb57765a9bcf450bb24ba436f7288856</span></button></div></a><div aria-labelledby="job_list___sub_heading_1_1" data-parent="#job_list___sub_accordion_1" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_1_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=3" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (3, 17), end pos: (3, 19)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Eq_NotEq, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -1,6 +1,6 @@
+ class Comparison:
+     def is_equal(self, a: int, b: int) -&gt; bool:
+-        return a == b
++        return a != b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+         return a &lt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py FFFF....                                        [100%]
+
+=================================== FAILURES ===================================
+___________________ TestComparison.test_that_1_is_equal_to_1 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x101c10860&gt;
+
+    def test_that_1_is_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(1, 1) == True
+E       assert False == True
+E        +  where False = is_equal(1, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x102186270&gt;.is_equal
+
+tests/test_comparison.py:6: AssertionError
+_________________ TestComparison.test_that_1_is_not_equal_to_2 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1010dc080&gt;
+
+    def test_that_1_is_not_equal_to_2(self):
+        comparison = Comparison()
+&gt;       assert not comparison.is_equal(1, 2)
+E       assert not True
+E        +  where True = is_equal(1, 2)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x1021b8110&gt;.is_equal
+
+tests/test_comparison.py:10: AssertionError
+_____________ TestComparison.test_is_equal_with_different_objects ______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x102184830&gt;
+
+    def test_is_equal_with_different_objects(self):
+        comp = Comparison()
+&gt;       assert comp.is_equal([1, 2, 3], [1, 2, 3]) == True
+E       assert False == True
+E        +  where False = is_equal([1, 2, 3], [1, 2, 3])
+E        +    where is_equal = &lt;comparison.Comparison object at 0x1021d65d0&gt;.is_equal
+
+tests/test_comparison.py:14: AssertionError
+_________________ TestComparison.test_that_2_is_not_equal_to_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x102186960&gt;
+
+    def test_that_2_is_not_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(2, 1) == False
+E       assert True == False
+E        +  where True = is_equal(2, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x1021d6f00&gt;.is_equal
+
+tests/test_comparison.py:18: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_equal_to_1 - ...
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_equal_to_2
+FAILED tests/test_comparison.py::TestComparison::test_is_equal_with_different_objects
+FAILED tests/test_comparison.py::TestComparison::test_that_2_is_not_equal_to_1
+========================= 4 failed, 4 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_2"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_2_1" aria-expanded="false" aria-controls="job_list___sub_collapse_2_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_2_1"><button class="btn btn-outline-success"><span class="job_id">2 : Job ID 5b9bd3f87a9d4c89a88fdf93e2f86dcb</span></button></div></a><div aria-labelledby="job_list___sub_heading_2_1" data-parent="#job_list___sub_accordion_2" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_2_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=3" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (3, 17), end pos: (3, 19)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Eq_Lt, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -1,6 +1,6 @@
+ class Comparison:
+     def is_equal(self, a: int, b: int) -&gt; bool:
+-        return a == b
++        return a &lt; b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+         return a &lt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py FFF.....                                        [100%]
+
+=================================== FAILURES ===================================
+___________________ TestComparison.test_that_1_is_equal_to_1 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x102fa0860&gt;
+
+    def test_that_1_is_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(1, 1) == True
+E       assert False == True
+E        +  where False = is_equal(1, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x10352efc0&gt;.is_equal
+
+tests/test_comparison.py:6: AssertionError
+_________________ TestComparison.test_that_1_is_not_equal_to_2 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x10246c080&gt;
+
+    def test_that_1_is_not_equal_to_2(self):
+        comparison = Comparison()
+&gt;       assert not comparison.is_equal(1, 2)
+E       assert not True
+E        +  where True = is_equal(1, 2)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x103572210&gt;.is_equal
+
+tests/test_comparison.py:10: AssertionError
+_____________ TestComparison.test_is_equal_with_different_objects ______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x103517080&gt;
+
+    def test_is_equal_with_different_objects(self):
+        comp = Comparison()
+&gt;       assert comp.is_equal([1, 2, 3], [1, 2, 3]) == True
+E       assert False == True
+E        +  where False = is_equal([1, 2, 3], [1, 2, 3])
+E        +    where is_equal = &lt;comparison.Comparison object at 0x103572330&gt;.is_equal
+
+tests/test_comparison.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_equal_to_1 - ...
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_equal_to_2
+FAILED tests/test_comparison.py::TestComparison::test_is_equal_with_different_objects
+========================= 3 failed, 5 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_3"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_3_1" aria-expanded="false" aria-controls="job_list___sub_collapse_3_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_3_1"><button class="btn btn-outline-success"><span class="job_id">3 : Job ID 24c61185e4164f95a9a9eb01f033dc39</span></button></div></a><div aria-labelledby="job_list___sub_heading_3_1" data-parent="#job_list___sub_accordion_3" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_3_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=3" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (3, 17), end pos: (3, 19)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Eq_LtE, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -1,6 +1,6 @@
+ class Comparison:
+     def is_equal(self, a: int, b: int) -&gt; bool:
+-        return a == b
++        return a &lt;= b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+         return a &lt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py .F......                                        [100%]
+
+=================================== FAILURES ===================================
+_________________ TestComparison.test_that_1_is_not_equal_to_2 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x104dc8080&gt;
+
+    def test_that_1_is_not_equal_to_2(self):
+        comparison = Comparison()
+&gt;       assert not comparison.is_equal(1, 2)
+E       assert not True
+E        +  where True = is_equal(1, 2)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x105ecd790&gt;.is_equal
+
+tests/test_comparison.py:10: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_equal_to_2
+========================= 1 failed, 7 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_4"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_4_1" aria-expanded="false" aria-controls="job_list___sub_collapse_4_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_4_1"><button class="btn btn-outline-success"><span class="job_id">4 : Job ID b70aa2292b164a66b881a1e5aabedd37</span></button></div></a><div aria-labelledby="job_list___sub_heading_4_1" data-parent="#job_list___sub_accordion_4" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_4_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=3" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (3, 17), end pos: (3, 19)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Eq_Gt, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -1,6 +1,6 @@
+ class Comparison:
+     def is_equal(self, a: int, b: int) -&gt; bool:
+-        return a == b
++        return a &gt; b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+         return a &lt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py F.FF....                                        [100%]
+
+=================================== FAILURES ===================================
+___________________ TestComparison.test_that_1_is_equal_to_1 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x105686d80&gt;
+
+    def test_that_1_is_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(1, 1) == True
+E       assert False == True
+E        +  where False = is_equal(1, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x10605a480&gt;.is_equal
+
+tests/test_comparison.py:6: AssertionError
+_____________ TestComparison.test_is_equal_with_different_objects ______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x106041280&gt;
+
+    def test_is_equal_with_different_objects(self):
+        comp = Comparison()
+&gt;       assert comp.is_equal([1, 2, 3], [1, 2, 3]) == True
+E       assert False == True
+E        +  where False = is_equal([1, 2, 3], [1, 2, 3])
+E        +    where is_equal = &lt;comparison.Comparison object at 0x10609dc10&gt;.is_equal
+
+tests/test_comparison.py:14: AssertionError
+_________________ TestComparison.test_that_2_is_not_equal_to_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x10609ce60&gt;
+
+    def test_that_2_is_not_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(2, 1) == False
+E       assert True == False
+E        +  where True = is_equal(2, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x10609e0f0&gt;.is_equal
+
+tests/test_comparison.py:18: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_equal_to_1 - ...
+FAILED tests/test_comparison.py::TestComparison::test_is_equal_with_different_objects
+FAILED tests/test_comparison.py::TestComparison::test_that_2_is_not_equal_to_1
+========================= 3 failed, 5 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_5"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_5_1" aria-expanded="false" aria-controls="job_list___sub_collapse_5_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_5_1"><button class="btn btn-outline-success"><span class="job_id">5 : Job ID 22b2539377ad40f6b451a8aade7d7cab</span></button></div></a><div aria-labelledby="job_list___sub_heading_5_1" data-parent="#job_list___sub_accordion_5" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_5_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=3" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (3, 17), end pos: (3, 19)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Eq_GtE, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -1,6 +1,6 @@
+ class Comparison:
+     def is_equal(self, a: int, b: int) -&gt; bool:
+-        return a == b
++        return a &gt;= b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+         return a &lt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ...F....                                        [100%]
+
+=================================== FAILURES ===================================
+_________________ TestComparison.test_that_2_is_not_equal_to_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1043bd3d0&gt;
+
+    def test_that_2_is_not_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(2, 1) == False
+E       assert True == False
+E        +  where True = is_equal(2, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x10440db50&gt;.is_equal
+
+tests/test_comparison.py:18: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_2_is_not_equal_to_1
+========================= 1 failed, 7 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_6"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_6_1" aria-expanded="false" aria-controls="job_list___sub_collapse_6_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_6_1"><button class="btn btn-outline-success"><span class="job_id">6 : Job ID b6b9a949da9748188a67dcfd54bb361d</span></button></div></a><div aria-labelledby="job_list___sub_heading_6_1" data-parent="#job_list___sub_accordion_6" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_6_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=3" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (3, 17), end pos: (3, 19)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Eq_Is, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -1,6 +1,6 @@
+ class Comparison:
+     def is_equal(self, a: int, b: int) -&gt; bool:
+-        return a == b
++        return a is b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+         return a &lt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ..F.....                                        [100%]
+
+=================================== FAILURES ===================================
+_____________ TestComparison.test_is_equal_with_different_objects ______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x10440f6e0&gt;
+
+    def test_is_equal_with_different_objects(self):
+        comp = Comparison()
+&gt;       assert comp.is_equal([1, 2, 3], [1, 2, 3]) == True
+E       assert False == True
+E        +  where False = is_equal([1, 2, 3], [1, 2, 3])
+E        +    where is_equal = &lt;comparison.Comparison object at 0x10440e720&gt;.is_equal
+
+tests/test_comparison.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_is_equal_with_different_objects
+========================= 1 failed, 7 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_7"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_7_1" aria-expanded="false" aria-controls="job_list___sub_collapse_7_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_7_1"><button class="btn btn-outline-success"><span class="job_id">7 : Job ID 99f43b4c645948f993c42b7658dd4a1a</span></button></div></a><div aria-labelledby="job_list___sub_heading_7_1" data-parent="#job_list___sub_accordion_7" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_7_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=3" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (3, 17), end pos: (3, 19)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Eq_IsNot, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -1,6 +1,6 @@
+ class Comparison:
+     def is_equal(self, a: int, b: int) -&gt; bool:
+-        return a == b
++        return a is not b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+         return a &lt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py FF.F....                                        [100%]
+
+=================================== FAILURES ===================================
+___________________ TestComparison.test_that_1_is_equal_to_1 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x103b18860&gt;
+
+    def test_that_1_is_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(1, 1) == True
+E       assert False == True
+E        +  where False = is_equal(1, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x10408d490&gt;.is_equal
+
+tests/test_comparison.py:6: AssertionError
+_________________ TestComparison.test_that_1_is_not_equal_to_2 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x102fe4080&gt;
+
+    def test_that_1_is_not_equal_to_2(self):
+        comparison = Comparison()
+&gt;       assert not comparison.is_equal(1, 2)
+E       assert not True
+E        +  where True = is_equal(1, 2)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x1040e5790&gt;.is_equal
+
+tests/test_comparison.py:10: AssertionError
+_________________ TestComparison.test_that_2_is_not_equal_to_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1040e5130&gt;
+
+    def test_that_2_is_not_equal_to_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.is_equal(2, 1) == False
+E       assert True == False
+E        +  where True = is_equal(2, 1)
+E        +    where is_equal = &lt;comparison.Comparison object at 0x1040e65d0&gt;.is_equal
+
+tests/test_comparison.py:18: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_equal_to_1 - ...
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_equal_to_2
+FAILED tests/test_comparison.py::TestComparison::test_that_2_is_not_equal_to_1
+========================= 3 failed, 5 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_8"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_8_1" aria-expanded="false" aria-controls="job_list___sub_collapse_8_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_8_1"><button class="btn btn-outline-success"><span class="job_id">8 : Job ID 9c753263b25b4242922dc2c60947342e</span></button></div></a><div aria-labelledby="job_list___sub_heading_8_1" data-parent="#job_list___sub_accordion_8" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_8_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=6" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (6, 17), end pos: (6, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Lt_Eq, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -3,7 +3,7 @@
+         return a == b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+-        return a &lt; b
++        return a == b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+         return a &gt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ....FF..                                        [100%]
+
+=================================== FAILURES ===================================
+__________________ TestComparison.test_that_1_is_less_than_2 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1041bfe00&gt;
+
+    def test_that_1_is_less_than_2(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 2) == True
+E       assert False == True
+E        +  where False = less_than(1, 2)
+E        +    where less_than = &lt;comparison.Comparison object at 0x1041d9b80&gt;.less_than
+
+tests/test_comparison.py:22: AssertionError
+________________ TestComparison.test_that_1_is_not_less_than_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1041bc8f0&gt;
+
+    def test_that_1_is_not_less_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 1) == False
+E       assert True == False
+E        +  where True = less_than(1, 1)
+E        +    where less_than = &lt;comparison.Comparison object at 0x10418ac60&gt;.less_than
+
+tests/test_comparison.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_less_than_2
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_less_than_1
+========================= 2 failed, 6 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_9"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_9_1" aria-expanded="false" aria-controls="job_list___sub_collapse_9_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-danger" id="job_list___sub_heading_9_1"><button class="btn btn-outline-danger"><span class="job_id">9 : Job ID b73cc28149964e38826d05d0570adda6</span></button></div></a><div aria-labelledby="job_list___sub_heading_9_1" data-parent="#job_list___sub_accordion_9" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_9_1"><div class="card-body"><div class="work-item"><div class="alert alert-danger test-outcome" role="alert"><p>SURVIVED</p><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.SURVIVED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=6" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (6, 17), end pos: (6, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Lt_NotEq, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -3,7 +3,7 @@
+         return a == b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+-        return a &lt; b
++        return a != b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+         return a &gt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ........                                        [100%]
+
+============================== 8 passed in 0.01s ===============================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_10"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_10_1" aria-expanded="false" aria-controls="job_list___sub_collapse_10_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_10_1"><button class="btn btn-outline-success"><span class="job_id">10 : Job ID 9e3b77ce13bb4b06bd4ad0883da23438</span></button></div></a><div aria-labelledby="job_list___sub_heading_10_1" data-parent="#job_list___sub_accordion_10" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_10_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=6" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (6, 17), end pos: (6, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Lt_LtE, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -3,7 +3,7 @@
+         return a == b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+-        return a &lt; b
++        return a &lt;= b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+         return a &gt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py .....F..                                        [100%]
+
+=================================== FAILURES ===================================
+________________ TestComparison.test_that_1_is_not_less_than_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x10449cf80&gt;
+
+    def test_that_1_is_not_less_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 1) == False
+E       assert True == False
+E        +  where True = less_than(1, 1)
+E        +    where less_than = &lt;comparison.Comparison object at 0x10449d3d0&gt;.less_than
+
+tests/test_comparison.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_less_than_1
+========================= 1 failed, 7 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_11"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_11_1" aria-expanded="false" aria-controls="job_list___sub_collapse_11_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_11_1"><button class="btn btn-outline-success"><span class="job_id">11 : Job ID 418c4a5a1a33417da36ad484d1b0fb1d</span></button></div></a><div aria-labelledby="job_list___sub_heading_11_1" data-parent="#job_list___sub_accordion_11" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_11_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=6" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (6, 17), end pos: (6, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Lt_Gt, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -3,7 +3,7 @@
+         return a == b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+-        return a &lt; b
++        return a &gt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+         return a &gt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ....F...                                        [100%]
+
+=================================== FAILURES ===================================
+__________________ TestComparison.test_that_1_is_less_than_2 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1015c5280&gt;
+
+    def test_that_1_is_less_than_2(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 2) == True
+E       assert False == True
+E        +  where False = less_than(1, 2)
+E        +    where less_than = &lt;comparison.Comparison object at 0x1015c5970&gt;.less_than
+
+tests/test_comparison.py:22: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_less_than_2
+========================= 1 failed, 7 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_12"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_12_1" aria-expanded="false" aria-controls="job_list___sub_collapse_12_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_12_1"><button class="btn btn-outline-success"><span class="job_id">12 : Job ID 964d4a9bc43647ff97795f41e5ace3e5</span></button></div></a><div aria-labelledby="job_list___sub_heading_12_1" data-parent="#job_list___sub_accordion_12" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_12_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=6" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (6, 17), end pos: (6, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Lt_GtE, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -3,7 +3,7 @@
+         return a == b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+-        return a &lt; b
++        return a &gt;= b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+         return a &gt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ....FF..                                        [100%]
+
+=================================== FAILURES ===================================
+__________________ TestComparison.test_that_1_is_less_than_2 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x103d4d3a0&gt;
+
+    def test_that_1_is_less_than_2(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 2) == True
+E       assert False == True
+E        +  where False = less_than(1, 2)
+E        +    where less_than = &lt;comparison.Comparison object at 0x103d4d6a0&gt;.less_than
+
+tests/test_comparison.py:22: AssertionError
+________________ TestComparison.test_that_1_is_not_less_than_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x103d4d1f0&gt;
+
+    def test_that_1_is_not_less_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 1) == False
+E       assert True == False
+E        +  where True = less_than(1, 1)
+E        +    where less_than = &lt;comparison.Comparison object at 0x103d4e3c0&gt;.less_than
+
+tests/test_comparison.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_less_than_2
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_less_than_1
+========================= 2 failed, 6 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_13"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_13_1" aria-expanded="false" aria-controls="job_list___sub_collapse_13_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_13_1"><button class="btn btn-outline-success"><span class="job_id">13 : Job ID fcb5cd1c50634ea9a9a6f3c226e30ab2</span></button></div></a><div aria-labelledby="job_list___sub_heading_13_1" data-parent="#job_list___sub_accordion_13" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_13_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=6" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (6, 17), end pos: (6, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Lt_Is, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -3,7 +3,7 @@
+         return a == b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+-        return a &lt; b
++        return a is b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+         return a &gt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ....FF..                                        [100%]
+
+=================================== FAILURES ===================================
+__________________ TestComparison.test_that_1_is_less_than_2 ___________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1021e5010&gt;
+
+    def test_that_1_is_less_than_2(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 2) == True
+E       assert False == True
+E        +  where False = less_than(1, 2)
+E        +    where less_than = &lt;comparison.Comparison object at 0x1021e5790&gt;.less_than
+
+tests/test_comparison.py:22: AssertionError
+________________ TestComparison.test_that_1_is_not_less_than_1 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1021e5370&gt;
+
+    def test_that_1_is_not_less_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.less_than(1, 1) == False
+E       assert True == False
+E        +  where True = less_than(1, 1)
+E        +    where less_than = &lt;comparison.Comparison object at 0x1021e65d0&gt;.less_than
+
+tests/test_comparison.py:26: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_less_than_2
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_less_than_1
+========================= 2 failed, 6 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_14"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_14_1" aria-expanded="false" aria-controls="job_list___sub_collapse_14_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-danger" id="job_list___sub_heading_14_1"><button class="btn btn-outline-danger"><span class="job_id">14 : Job ID d4017cd095964b0994cfd1d745258a18</span></button></div></a><div aria-labelledby="job_list___sub_heading_14_1" data-parent="#job_list___sub_accordion_14" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_14_1"><div class="card-body"><div class="work-item"><div class="alert alert-danger test-outcome" role="alert"><p>SURVIVED</p><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.SURVIVED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=6" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (6, 17), end pos: (6, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Lt_IsNot, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -3,7 +3,7 @@
+         return a == b
+     
+     def less_than(self, a: int, b: int) -&gt; bool:
+-        return a &lt; b
++        return a is not b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+         return a &gt; b</pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ........                                        [100%]
+
+============================== 8 passed in 0.01s ===============================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_15"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_15_1" aria-expanded="false" aria-controls="job_list___sub_collapse_15_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_15_1"><button class="btn btn-outline-success"><span class="job_id">15 : Job ID d52b4538c8dd4396a8b53c9117a55ec7</span></button></div></a><div aria-labelledby="job_list___sub_heading_15_1" data-parent="#job_list___sub_accordion_15" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_15_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=9" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (9, 17), end pos: (9, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Gt_Eq, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -6,5 +6,5 @@
+         return a &lt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+-        return a &gt; b
++        return a == b
+ </pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ......FF                                        [100%]
+
+=================================== FAILURES ===================================
+_________________ TestComparison.test_that_1_is_greater_than_0 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x103d9cda0&gt;
+
+    def test_that_1_is_greater_than_0(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 0) == True
+E       assert False == True
+E        +  where False = greater_than(1, 0)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x103db9e20&gt;.greater_than
+
+tests/test_comparison.py:30: AssertionError
+_______________ TestComparison.test_that_1_is_not_greater_than_1 _______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x103db9b20&gt;
+
+    def test_that_1_is_not_greater_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 1) == False
+E       assert True == False
+E        +  where True = greater_than(1, 1)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x103d68b90&gt;.greater_than
+
+tests/test_comparison.py:34: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_greater_than_0
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_greater_than_1
+========================= 2 failed, 6 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_16"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_16_1" aria-expanded="false" aria-controls="job_list___sub_collapse_16_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-danger" id="job_list___sub_heading_16_1"><button class="btn btn-outline-danger"><span class="job_id">16 : Job ID 0ad3c3d08db94aac8c46400f56e48e55</span></button></div></a><div aria-labelledby="job_list___sub_heading_16_1" data-parent="#job_list___sub_accordion_16" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_16_1"><div class="card-body"><div class="work-item"><div class="alert alert-danger test-outcome" role="alert"><p>SURVIVED</p><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.SURVIVED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=9" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (9, 17), end pos: (9, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Gt_NotEq, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -6,5 +6,5 @@
+         return a &lt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+-        return a &gt; b
++        return a != b
+ </pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ........                                        [100%]
+
+============================== 8 passed in 0.01s ===============================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_17"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_17_1" aria-expanded="false" aria-controls="job_list___sub_collapse_17_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_17_1"><button class="btn btn-outline-success"><span class="job_id">17 : Job ID 0f19c186f07941bda4d15d194264aaa4</span></button></div></a><div aria-labelledby="job_list___sub_heading_17_1" data-parent="#job_list___sub_accordion_17" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_17_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=9" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (9, 17), end pos: (9, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Gt_Lt, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -6,5 +6,5 @@
+         return a &lt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+-        return a &gt; b
++        return a &lt; b
+ </pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ......F.                                        [100%]
+
+=================================== FAILURES ===================================
+_________________ TestComparison.test_that_1_is_greater_than_0 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x10249d460&gt;
+
+    def test_that_1_is_greater_than_0(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 0) == True
+E       assert False == True
+E        +  where False = greater_than(1, 0)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x10249d7f0&gt;.greater_than
+
+tests/test_comparison.py:30: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_greater_than_0
+========================= 1 failed, 7 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_18"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_18_1" aria-expanded="false" aria-controls="job_list___sub_collapse_18_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_18_1"><button class="btn btn-outline-success"><span class="job_id">18 : Job ID 1d121dce99e440568d6183f4676574a5</span></button></div></a><div aria-labelledby="job_list___sub_heading_18_1" data-parent="#job_list___sub_accordion_18" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_18_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=9" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (9, 17), end pos: (9, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Gt_LtE, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -6,5 +6,5 @@
+         return a &lt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+-        return a &gt; b
++        return a &lt;= b
+ </pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ......FF                                        [100%]
+
+=================================== FAILURES ===================================
+_________________ TestComparison.test_that_1_is_greater_than_0 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1041c9460&gt;
+
+    def test_that_1_is_greater_than_0(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 0) == True
+E       assert False == True
+E        +  where False = greater_than(1, 0)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x1041c98e0&gt;.greater_than
+
+tests/test_comparison.py:30: AssertionError
+_______________ TestComparison.test_that_1_is_not_greater_than_1 _______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1041c9520&gt;
+
+    def test_that_1_is_not_greater_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 1) == False
+E       assert True == False
+E        +  where True = greater_than(1, 1)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x1041c9700&gt;.greater_than
+
+tests/test_comparison.py:34: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_greater_than_0
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_greater_than_1
+========================= 2 failed, 6 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_19"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_19_1" aria-expanded="false" aria-controls="job_list___sub_collapse_19_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_19_1"><button class="btn btn-outline-success"><span class="job_id">19 : Job ID 1b6109f2779b48078a2e521a6d34ee54</span></button></div></a><div aria-labelledby="job_list___sub_heading_19_1" data-parent="#job_list___sub_accordion_19" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_19_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=9" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (9, 17), end pos: (9, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Gt_GtE, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -6,5 +6,5 @@
+         return a &lt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+-        return a &gt; b
++        return a &gt;= b
+ </pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py .......F                                        [100%]
+
+=================================== FAILURES ===================================
+_______________ TestComparison.test_that_1_is_not_greater_than_1 _______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x103919520&gt;
+
+    def test_that_1_is_not_greater_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 1) == False
+E       assert True == False
+E        +  where True = greater_than(1, 1)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x103919d30&gt;.greater_than
+
+tests/test_comparison.py:34: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_greater_than_1
+========================= 1 failed, 7 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_20"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_20_1" aria-expanded="false" aria-controls="job_list___sub_collapse_20_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-success" id="job_list___sub_heading_20_1"><button class="btn btn-outline-success"><span class="job_id">20 : Job ID 59ab1b83f34a4e378a110ff5b80d86b5</span></button></div></a><div aria-labelledby="job_list___sub_heading_20_1" data-parent="#job_list___sub_accordion_20" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_20_1"><div class="card-body"><div class="work-item"><div class="alert alert-success test-outcome" role="alert"><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.KILLED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=9" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (9, 17), end pos: (9, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Gt_Is, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -6,5 +6,5 @@
+         return a &lt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+-        return a &gt; b
++        return a is b
+ </pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ......FF                                        [100%]
+
+=================================== FAILURES ===================================
+_________________ TestComparison.test_that_1_is_greater_than_0 _________________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1039c5580&gt;
+
+    def test_that_1_is_greater_than_0(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 0) == True
+E       assert False == True
+E        +  where False = greater_than(1, 0)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x1039c59d0&gt;.greater_than
+
+tests/test_comparison.py:30: AssertionError
+_______________ TestComparison.test_that_1_is_not_greater_than_1 _______________
+
+self = &lt;tests.test_comparison.TestComparison object at 0x1039c5790&gt;
+
+    def test_that_1_is_not_greater_than_1(self):
+        comparison = Comparison()
+&gt;       assert comparison.greater_than(1, 1) == False
+E       assert True == False
+E        +  where True = greater_than(1, 1)
+E        +    where greater_than = &lt;comparison.Comparison object at 0x1039c66c0&gt;.greater_than
+
+tests/test_comparison.py:34: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_greater_than_0
+FAILED tests/test_comparison.py::TestComparison::test_that_1_is_not_greater_than_1
+========================= 2 failed, 6 passed in 0.02s ==========================
+</pre></div></div></div></div></div><div class="mb-1" id="job_list___sub_accordion_21"><div class="card"><a data-toggle="collapse" data-target="#job_list___sub_collapse_21_1" aria-expanded="false" aria-controls="job_list___sub_collapse_21_1" href="#" class="job_list___sub_multi_heading"><div role="alert" class="card-header alert-danger" id="job_list___sub_heading_21_1"><button class="btn btn-outline-danger"><span class="job_id">21 : Job ID c75066cc686843d3963d6b9d31480de0</span></button></div></a><div aria-labelledby="job_list___sub_heading_21_1" data-parent="#job_list___sub_accordion_21" class="collapse job_list___sub_multi_collapse" id="job_list___sub_collapse_21_1"><div class="card-body"><div class="work-item"><div class="alert alert-danger test-outcome" role="alert"><p>SURVIVED</p><p>worker outcome: WorkerOutcome.NORMAL</p><p>test outcome: TestOutcome.SURVIVED</p></div></div><pre class="location"><a href="pycharm://open?file=comparison.py&amp;line=9" class="text-secondary"><button class="btn btn-outline-dark">comparison.py, start pos: (9, 17), end pos: (9, 18)</button></a></pre><pre>operator: core/ReplaceComparisonOperator_Gt_IsNot, occurrence: 0</pre><div class="alert alert-secondary"><pre class="diff">--- mutation diff ---
+--- acomparison.py
++++ bcomparison.py
+@@ -6,5 +6,5 @@
+         return a &lt; b
+     
+     def greater_than(self, a: int, b: int) -&gt; bool:
+-        return a &gt; b
++        return a is not b
+ </pre></div><div class="alert alert-secondary"><pre class="diff">============================= test session starts ==============================
+platform darwin -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: /Users/sarthakvashistha/workspace/ak/simple-mutation-testing-kata/python
+configfile: pyproject.toml
+collected 8 items
+
+tests/test_comparison.py ........                                        [100%]
+
+============================== 8 passed in 0.01s ===============================
+</pre></div></div></div></div></div></div></div></div></div></div><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script><script type="text/javascript">$('div.job_list___sub_multi_collapse').on('shown.bs.collapse',  function () {    correct_behavior_functional_buttons();  });$('div.job_list___sub_multi_collapse').on('hidden.bs.collapse',  function () {    correct_behavior_functional_buttons();  });function correct_behavior_functional_buttons() {    var expand = false;    var collapse = false;    $('a.job_list___sub_multi_heading').each(function(index) {      if ($(this).attr('aria-expanded') == 'false') {        expand = true;        return false;      };    });    $('a.job_list___sub_multi_heading').each(function(index) {      if ($(this).attr('aria-expanded') == 'true') {        collapse = true;        return false;      };    });    if (expand) {      $('div#job_item_expand_all').css('display', 'inline-block');    } else {      $('div#job_item_expand_all').css('display', 'none');    };    if (collapse) {      $('div#job_item_collapse_all').css('display', 'inline-block');    } else {      $('div#job_item_collapse_all').css('display', 'none');    };  };correct_behavior_functional_buttons();</script></body></html>

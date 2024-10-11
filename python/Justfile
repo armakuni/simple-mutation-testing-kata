@@ -1,0 +1,24 @@
+# Justfile
+
+### Run tests
+test:
+    pytest
+
+### Install uv
+install-uv:
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+### Check how tests perform before introducing mutants
+before-mutants:
+    cosmic-ray init mutation-config.toml mutation.sqlite
+    cosmic-ray --verbosity=INFO baseline mutation-config.toml
+
+### Check how tests perform after introducing mutants
+after-mutants:
+    cosmic-ray init mutation-config.toml mutation.sqlite
+    cosmic-ray exec mutation-config.toml mutation.sqlite
+    cr-report mutation.sqlite --show-pending
+
+### Generate mutation test report in html
+generate-report:
+    cr-html mutation.sqlite > report.html

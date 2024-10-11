@@ -7,6 +7,7 @@ of mutation that can be applied by a Mutation Testing Framework.
   - [Golang](./go)
   - [Java](./java)
   - [PHP](./php)
+  - [Python](./python)
   - [Typescript](./typescript)
 
 There is also a Guided Learning Hour using this exercise: [Mutation Testing: What is a Mutant?](https://github.com/armakuni/learning-hours/blob/main/mutation-testing-01-what-is-a-mutant.md)
