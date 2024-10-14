@@ -17,12 +17,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         name: Checkout code
-
-      - run: go test ./...
-        name: Run tests
-
-      - run: go get -t -v github.com/avito-tech/go-mutesting/...
-        name: Install Go MuTesting
-        
-      - run: go-mutesting ./...
-        name: Run mutation testing tool
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Install go-mutesting
+        run: |
+          go mod tidy
+          GOARCH=amd64 GOOS=linux go get -v github.com/avito-tech/go-mutesting/cmd/go-mutesting@latest
+          GOARCH=amd64 GOOS=linux go build -o bin/go-mutesting github.com/avito-tech/go-mutesting/cmd/go-mutesting
+      - name: Run tests
+        run: go test ./...
+      - name: Run mutation testing
+        run: |
+          ./bin/go-mutesting ./...
